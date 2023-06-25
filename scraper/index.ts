@@ -1,25 +1,45 @@
-const { Worker: MyWorker } = require('worker_threads');
-const url = 'https://www.sreality.cz/en/search/for-sale/apartments';
 
+import axios, { AxiosResponse } from 'axios';
 
-// Create a function to run the worker
-function runWorker(start_index: number) {
-    // Create a new worker instance
-    const worker = new MyWorker('./worker.ts', { workerData: start_index });
-    worker.on('error', (error) => {
-        console.error('Worker error:', error);
-    });
+const url = 'https://www.sreality.cz/api/en/v2/estates?category_main_cb=1&category_type_cb=1&page=2&per_page=500&tms=1687730224465';
+class Estate {
+    public name: string;
+    public locality: string;
+    public url: string;
 
-    // Handle the worker's exit
-    worker.on('exit', (code) => {
-        if (code !== 0) {
-            console.error('Worker stopped with exit code', code);
-        }
-    });
+    constructor(name: string, locality: string, url: string) {
+        this.name = name;
+        this.locality = locality;
+        this.url = url;
+    }
+
+    public toString(): string {
+        return `Estate name: ${this.name}, locality: ${this.locality}, url: ${this.url}`;
+    }
 }
 
-// Call the runWorker() function to start running the worker
-runWorker(1);
-//runWorker(4);
-//runWorker(7);
+const estates: Estate[] = [];
 
+async function fetchJsonData(url: string): Promise<any> {
+    try {
+        const response: AxiosResponse = await axios.get(url);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        throw error;
+    }
+}
+
+fetchJsonData(url)
+    .then(data => {
+        //get locality name and url
+        data._embedded.estates.forEach(obj => {
+            const estate = new Estate(obj.name, obj.locality, obj._links.images[0].href);
+            estates.push(estate);
+            console.log("new estate is ", estate.toString())
+        });
+        console.log("after, we have", estates.length);
+    })
+    .catch(error => {
+        console.error(error);
+    });
