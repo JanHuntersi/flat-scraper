@@ -1,5 +1,12 @@
 {
     "compilerOptions": {
-      "lib": ["es6", "dom"]
-    }
+      "lib": ["es6", "DOM","webworker"],
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "outDir": "./dist"
+    },
+    "files":[
+        "index.ts",
+        "worker.ts"
+    ]
   }

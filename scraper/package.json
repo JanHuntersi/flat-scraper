@@ -1,10 +1,10 @@
 {
   "name": "flat-scraper",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scrape": "ts-node ./index.ts"
+    "scrape": "ts-node ./index.ts && ts-node ./worker.ts"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,6 @@
   "description": "",
   "dependencies": {
     "@types/cheerio": "^0.22.31",
-    "@types/node": "^20.3.1",
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
     "crawler": "^1.4.0",
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.1",
+    "@types/node": "^20.3.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
