@@ -36,9 +36,9 @@ fetchJsonData(url)
         data._embedded.estates.forEach(obj => {
             const estate = new Estate(obj.name, obj.locality, obj._links.images[0].href);
             estates.push(estate);
-            console.log("new estate is ", estate.toString())
+            //console.log("new estate is ", estate.toString())
         });
-        console.log("after, we have", estates.length);
+        console.log(`Now we have ${estates.length} estates!`);
     })
     .catch(error => {
         console.error(error);

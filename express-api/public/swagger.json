@@ -17,6 +17,51 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Estate": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"locality": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"locality",
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IEstatePayload": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"locality": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"locality",
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -48,6 +93,137 @@
 				},
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/estates/test": {
+			"post": {
+				"operationId": "Test",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Estate"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/estates": {
+			"get": {
+				"operationId": "GetEstates",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Estate"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Estate"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateEstate",
+				"responses": {
+					"200": {
+						"description": "Created estate.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Estate"
+								}
+							}
+						}
+					}
+				},
+				"description": "Create a single estate.",
+				"tags": [
+					"Estate"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "- Estate payload.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEstatePayload",
+								"description": "- Estate payload."
+							}
+						}
+					}
+				}
+			}
+		},
+		"/estates/more": {
+			"post": {
+				"operationId": "CreateEstates",
+				"responses": {
+					"200": {
+						"description": "Created estates.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Estate"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Create multiple estates.",
+				"tags": [
+					"Estate"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "- Array of estate payloads.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"items": {
+									"$ref": "#/components/schemas/IEstatePayload"
+								},
+								"type": "array",
+								"description": "- Array of estate payloads."
+							}
+						}
+					}
+				}
 			}
 		}
 	},
