@@ -17,6 +17,12 @@ router.get("/estates", async (_req, res) => {
     return res.send(response);
 });
 
+router.delete("/estates", async (_req, res) => {
+    const controller = new EstateController();
+    const response = await controller.deleteEstates();
+    return res.send(response);
+})
+
 router.post("/estates", async (req, res) => {
     const controller = new EstateController();
     const response = await controller.createEstate(req.body);

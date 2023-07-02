@@ -1,7 +1,8 @@
-import { Get, Route, Tags, Post, Body, Path } from "tsoa";
+import { Get, Route, Tags, Post, Body, Path, Delete } from "tsoa";
 import { Estate } from "../models";
 import { Response } from 'express';
 import connectDB from "../config/ormconfig";
+import { DeleteResult } from "typeorm";
 
 interface IEstatePayload {
     name: string;
@@ -23,7 +24,10 @@ export default class EstateController {
         return connectDB.manager.find(Estate)
     }
 
-
+    @Delete("/")
+    public async deleteEstates(): Promise<DeleteResult> {
+        return connectDB.manager.delete(Estate, {});
+    }
     /**
     * Create a single estate.
     * @param body - Estate payload.
@@ -62,7 +66,7 @@ export default class EstateController {
             );
             return savedEstates;
         } catch (error) {
-            console.error("Error saving estates:", error);
+            console.log("Error saving estates:", error);
             throw new Error("Failed to save estates");
         }
     }
