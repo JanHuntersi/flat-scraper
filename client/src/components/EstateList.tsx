@@ -4,12 +4,14 @@ import Grid from "@mui/material/Grid";
 import EstateCard from "./EstateCard";
 import { Pagination } from '@mui/material';
 import { useState } from "react";
+import Button from '@mui/material/Button';
 import Estate from "../service/estateInterface";
+import { useTheme } from "@mui/system";
 
 export default function EstateList(){
 
-    const { estates } = useEstateService();
-
+    const { estates, fetchData } = useEstateService();
+    const theme = useTheme();
     const [itemsPerPage, setItemsPerPage] = useState(20); // Number of items to display per page
     const [currentPage, setCurrentPage] = useState(1); // Current page number
     
@@ -21,10 +23,14 @@ export default function EstateList(){
       };
 
 
-    return(
-        <Box sx={{ backgroundColor:"green", width:"100%",marginTop:"4em"}}>
-             <Grid sx={{display:"flex",alignItems:"center",justifyContent:"center",paddingBottom:"2em" }} container rowSpacing={3} columnSpacing={{ xs: 1, sm: 3, md: 4 }}>
+      console.log("estates",estates);
 
+    return(
+        estates.length > 0 ? <>
+
+        <Box sx={{ backgroundColor:theme.palette.background.default, width:"100%",marginTop:"4em"}}>
+             <Grid sx={{display:"flex",alignItems:"center",justifyContent:"center",paddingBottom:"2em" }} container rowSpacing={3} columnSpacing={{ xs: 1, sm: 3, md: 4 }}>
+            
 			{getDisplayedEstates().map((estate) => (
                  <Grid item xs="auto">
 				<EstateCard estate={estate} />
@@ -38,6 +44,10 @@ export default function EstateList(){
                     onChange={(event, value) => setCurrentPage(value)}
                 />
             </Box> 
-        </Box>        
-    )
+        </Box>   
+        </>
+         : <Box sx={{ width:"100%", marginTop:"2em",display:"flex", alignItems:"center", justifyContent:"center"}}>
+            <Button variant="contained" onClick={()=>{fetchData()}}>Fetch data</Button>
+         </Box>
+    );
 }

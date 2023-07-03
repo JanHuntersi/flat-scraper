@@ -9,7 +9,7 @@ export default function EstateView(){
     const { id } = useParams();
 
     const { estates } = useEstateService();
-    const [estate,setEstate]= useState(null);
+    const [estate,setEstate]= useState<Estate | null>(null);
 
     useEffect(() => {
             const filteredObjects = estates.filter((thisEstate:Estate) => thisEstate.id?.toString() === id);

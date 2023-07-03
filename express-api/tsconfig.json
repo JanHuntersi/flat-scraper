@@ -7,5 +7,9 @@
       "esModuleInterop": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true
-    }
+    },
+    "files":[
+      "index.ts",
+      "scraper.ts"
+  ]
   }

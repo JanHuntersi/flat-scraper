@@ -3,6 +3,7 @@ import morgan from "morgan";
 import Router from "./routes";
 import cors from 'cors';
 import swaggerUi from "swagger-ui-express";
+import startScraping from "./scraper";
 
 const PORT = process.env.PORT || 8000;
 
@@ -27,4 +28,8 @@ app.use(Router);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
+
+    //Run the scraper
+    startScraping();
+
 });

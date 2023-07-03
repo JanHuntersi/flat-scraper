@@ -1,6 +1,5 @@
 import { styled, useTheme } from "@mui/system";
 import { Box } from "@mui/material";
-import React from "react";
 
 export default function Header(){
 
@@ -11,15 +10,17 @@ export default function Header(){
 		position: "static",
 		margin: "0",
 		minHeight: "3em",
-		backgroundColor: "green",
+		backgroundColor: theme.palette.primary.main,
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
+		color: "white",
+		fontSize:"1.5em"
 	}));
 
     return(
         <HeaderBar>
-            <p>Czech Flat Scraper Made by Jan Sernec</p>
+           Czech Flat Scraper Made by Jan Sernec
         </HeaderBar>
     )
 }

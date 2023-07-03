@@ -81,6 +81,25 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Partial_Estate_": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"locality": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
 			}
 		},
 		"securitySchemes": {}
@@ -234,7 +253,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/Estate"
+										"$ref": "#/components/schemas/Partial_Estate_"
 									},
 									"type": "array"
 								}

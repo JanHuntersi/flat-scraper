@@ -19,7 +19,7 @@ const ChangeThemeIcon = ({ changeTheme, isDarkTheme }: ChangeThemeIconProps) => 
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "green",
+    backgroundColor: theme.palette.primary.main,
     position: "fixed",
     right: "1em",
     bottom: "5%",
@@ -28,8 +28,7 @@ const ChangeThemeIcon = ({ changeTheme, isDarkTheme }: ChangeThemeIconProps) => 
     padding: "1.1em",
     "&:hover": {
       cursor: "pointer",
-      backgroundColor: "blue",
-      color: "white",
+      color:  theme.palette.text.primary,
     },
     zIndex: 2000,
   });
@@ -37,9 +36,9 @@ const ChangeThemeIcon = ({ changeTheme, isDarkTheme }: ChangeThemeIconProps) => 
   return (
     <ChangeColor theme={theme} onClick={changeTheme} sx={{}}>
       {!isDarkTheme ? (
-        <DarkModeIcon sx={{ fontSize: "1.8em" }} />
+        <DarkModeIcon sx={{ fontSize: "1.8em", color:"white" }} />
       ) : (
-        <LightModeIcon sx={{ fontSize: "1.8em" }} />
+        <LightModeIcon sx={{ fontSize: "1.8em", color:"white" }} />
       )}
     </ChangeColor>
   );

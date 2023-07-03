@@ -1,13 +1,19 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea, CardContent, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import styled from '@emotion/styled';
 import Estate from '../service/estateInterface';
+import { useTheme } from "@mui/system";
 
-export default function EstateCard({estate}:Estate){
+type Props = {
+  estate: Estate;
+};
+
+export default function EstateCard({estate}:Props){
+
+  const theme = useTheme();
    
   const MyLink = styled(Link)(({ theme }) => ({
 		textDecoration: "none",
@@ -15,7 +21,7 @@ export default function EstateCard({estate}:Estate){
 
     return(
       <MyLink  to={'/estate/'+estate.id}>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, backgroundColor:theme.palette.primary.main, color:"white" }}>
         <CardActionArea>
           <CardMedia
             component="img"

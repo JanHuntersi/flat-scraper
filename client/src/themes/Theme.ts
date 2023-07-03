@@ -1,27 +1,44 @@
 import { createTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
-import { PaletteOptions } from '@mui/material/styles/createPalette';
 
+const lightColors = {
+    txt: '#142136',
+    background: '#f5f5f5',
+    btn: '#6366f1',
+};
+
+const darkColors = {
+    txt: '#ffffff',
+    background: '#142136',
+    btn: '#22395d',
+};
 
 const lightTheme = createTheme({
     palette: {
-        primary: blue,
-        secondary: {
-            main: '#39ace7', // Example secondary color
-
+        primary: {
+            main: lightColors.btn,
         },
-        // Add more custom colors as needed
+        text: {
+            primary: lightColors.txt,
+        },
+        background: {
+            default: lightColors.background,
+        },
     },
 });
 
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
-        primary: blue,
-        secondary: {
-            main: '#39ace7', // Example secondary color
+        primary: {
+            main: darkColors.btn,
         },
-        // Add more custom colors as needed
+        text: {
+            primary: darkColors.txt,
+        },
+        background: {
+            default: darkColors.background,
+        },
     },
 });
 

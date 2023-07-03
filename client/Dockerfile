@@ -1,20 +1,14 @@
-# Use a lightweight Node.js image as base
-FROM node:16-alpine
+ FROM node:latest
 
-# Set the working directory in the container
 WORKDIR /client
 
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
+COPY package.json .
+RUN npm i
 
-# Install app dependencies
-RUN npm install
+ COPY . /client
 
-# Copy the rest of the app code
-COPY . .
+## EXPOSE [Port you mentioned in the vite.config file]
 
-# Build the React app
-RUN npm run build
+EXPOSE 5173
 
-# Set the command to start the app
-CMD ["npm", "start", "--port", "8080"]
+CMD ["npm", "run", "dev"]

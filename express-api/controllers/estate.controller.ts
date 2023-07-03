@@ -10,29 +10,29 @@ interface IEstatePayload {
     url: string;
 }
 
-
 @Route("estates")
 @Tags("Estate")
 export default class EstateController {
     @Post("/test")
-    public async test(@Body() body: String): Promise<String> {
+    public async test(@Body() body: string): Promise<string> {
         return body;
     }
 
     @Get("/")
     public async getEstates(): Promise<Array<Estate>> {
-        return connectDB.manager.find(Estate)
+        return connectDB.manager.find(Estate);
     }
 
     @Delete("/")
     public async deleteEstates(): Promise<DeleteResult> {
         return connectDB.manager.delete(Estate, {});
     }
+
     /**
-    * Create a single estate.
-    * @param body - Estate payload.
-    * @returns Created estate.
-    */
+     * Create a single estate.
+     * @param body - Estate payload.
+     * @returns Created estate.
+     */
     @Post("/")
     public async createEstate(@Body() body: IEstatePayload): Promise<Estate> {
         const estate = connectDB.manager.getRepository(Estate).create(body);
@@ -45,7 +45,7 @@ export default class EstateController {
      * @returns Created estates.
      */
     @Post("/more")
-    public async createEstates(@Body() body: Array<IEstatePayload>): Promise<Array<Estate>> {
+    public async createEstates(@Body() body: Array<IEstatePayload>): Promise<Partial<Estate>[]> {
         try {
             const estatesPayload: IEstatePayload[] = body;
             // Transform the payload into an array of plain objects representing the estates
@@ -57,11 +57,11 @@ export default class EstateController {
                 })
             );
 
-            //Get the result
+            // Get the result
             const result = await connectDB.manager.getRepository(Estate).insert(estates);
 
             // Get the inserted estates from the result
-            const savedEstates: Estate[] = result.generatedMaps.map((generatedMap) =>
+            const savedEstates: Partial<Estate>[] = result.generatedMaps.map((generatedMap) =>
                 connectDB.manager.create(Estate, generatedMap)
             );
             return savedEstates;
@@ -70,5 +70,4 @@ export default class EstateController {
             throw new Error("Failed to save estates");
         }
     }
-
 }

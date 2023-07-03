@@ -12,7 +12,6 @@ const connectDB = new DataSource({
     synchronize: true,
 })
 
-
 connectDB
     .initialize()
     .then(() => {
