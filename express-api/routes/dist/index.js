@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var express_1 = require("express");
 var ping_1 = require("../controllers/ping");
+var estate_controller_1 = require("../controllers/estate.controller");
 var router = express_1["default"].Router();
 router.get("/ping", function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var controller, response;
@@ -46,6 +47,71 @@ router.get("/ping", function (_req, res) { return __awaiter(void 0, void 0, void
             case 0:
                 controller = new ping_1["default"]();
                 return [4 /*yield*/, controller.getMessage()];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, res.send(response)];
+        }
+    });
+}); });
+router.get("/estates", function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var controller, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                controller = new estate_controller_1["default"]();
+                return [4 /*yield*/, controller.getEstates()];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, res.send(response)];
+        }
+    });
+}); });
+router["delete"]("/estates", function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var controller, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                controller = new estate_controller_1["default"]();
+                return [4 /*yield*/, controller.deleteEstates()];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, res.send(response)];
+        }
+    });
+}); });
+router.post("/estates", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var controller, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                controller = new estate_controller_1["default"]();
+                return [4 /*yield*/, controller.createEstate(req.body)];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, res.send(response)];
+        }
+    });
+}); });
+router.post("/estates/test", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var controller, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                controller = new estate_controller_1["default"]();
+                return [4 /*yield*/, controller.test(req.body)];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, res.send(response)];
+        }
+    });
+}); });
+router.post("/estates/more", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var controller, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                controller = new estate_controller_1["default"]();
+                return [4 /*yield*/, controller.createEstates(req.body)];
             case 1:
                 response = _a.sent();
                 return [2 /*return*/, res.send(response)];

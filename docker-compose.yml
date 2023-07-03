@@ -22,3 +22,20 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_HOST=db
+  
+  
+  #scraper:
+  #  build:
+  #    context: ./scraper
+  #    dockerfile: Dockerfile
+  #  depends_on:
+  #    - app
+  #client:
+  #  build: ./client
+  #  ports:
+  #    - '8080:8080'
+  #  volumes:
+  #    - ./client:/app
+  #  depends_on:
+  #    - app
+  #    - scraper

@@ -79,9 +79,9 @@ fetchJsonData(url)
     data._embedded.estates.forEach(function (obj) {
         var estate = new Estate(obj.name, obj.locality, obj._links.images[0].href);
         estates.push(estate);
-        console.log("new estate is ", estate.toString());
+        //console.log("new estate is ", estate.toString())
     });
-    console.log("after, we have", estates.length);
+    console.log("Now we have " + estates.length + " estates!");
 })["catch"](function (error) {
     console.error(error);
 });

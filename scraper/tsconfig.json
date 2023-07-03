@@ -7,6 +7,5 @@
     },
     "files":[
         "index.ts",
-        "worker.ts"
     ]
   }
