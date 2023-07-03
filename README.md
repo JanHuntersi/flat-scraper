@@ -13,6 +13,7 @@ An Express server written in Typescript. It folllows "Controller-Route-Model" ar
 ## Client
 
 The frontend app, written in React and Typescript, built with Vite for faster development. UI is written with MUI(Material-UI) library with custom theme and light/dark mode. React-router-dom library is used for routing.
+Pagination is used to traverse through all 500 estates on the same page.
 If the site loads before the API express server is initialized, a button is visible that enables the user to manually call "fetch" data from the API that returns estates when its initialized.
 
 ## Docker
