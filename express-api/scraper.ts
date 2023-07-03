@@ -32,8 +32,6 @@ async function fetchJsonData(url: string): Promise<any> {
 
 export default async function startScraping() {
 
-    //Delete all entries in db
-
     fetchJsonData(url)
         .then(async data => {
             //get locality name and url
@@ -55,6 +53,5 @@ export default async function startScraping() {
         .finally(() => {
             console.log("Scraper is finished")
         });
-
 }
 
