@@ -2,6 +2,7 @@
 
 ## Scraper
 Written in typescript. Uses axios library to fetch 500 estates from czech real estate website: https://www.sreality.cz
+(Its started after API is initialized)
 
 ## Database
 A PostgreSQL database used for storing one entity: an Estate (url, name, locality). Interaction with db is via TypeORM, where the schema is defined.
@@ -13,6 +14,10 @@ An Express server written in Typescript. It folllows "Controller-Route-Model" ar
 
 The frontend app, written in React and Typescript, built with Vite for faster development. UI is written with MUI(Material-UI) library with custom theme and light/dark mode. React-router-dom library is used for routing.
 If the site loads before the API express server is initialized, a button is visible that enables the user to manually call "fetch" data from the API that returns estates when its initialized.
+
+## Docker
+
+Database, API and client are three seperated and isolated images that are run and maintained in the  Docker environment
 
 ## Getting started
 
@@ -47,3 +52,4 @@ To get started with the project, follow the steps below:
 ![Alt text](image.png)
 ![Alt text](image-1.png)
 ![Alt text](image-2.png)
+![Alt text](image-3.png)
