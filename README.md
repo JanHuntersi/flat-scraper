@@ -47,7 +47,7 @@ To get started with the project, follow the steps below:
    docker compose up
    ```
 
-5. Voila! Play around
+5. Wait for the API to initialize (terminal) and load the webapp
 
 ## Examples
 ![Alt text](images/image.png)
