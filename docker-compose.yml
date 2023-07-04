@@ -12,8 +12,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8000:8000'
-    volumes:
-       - ./express-api:/app
     depends_on:
       - db
     environment:
@@ -27,9 +25,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8080:8080'
-    volumes:
-      - /client/node_modules
-      - ./client:/client
     depends_on:
       - app
 
