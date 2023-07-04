@@ -3,7 +3,7 @@ import { useEstateService } from "../service/EstateServiceProvider";
 import Grid from "@mui/material/Grid";
 import EstateCard from "./EstateCard";
 import { Pagination } from '@mui/material';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import Estate from "../service/estateInterface";
 import { useTheme } from "@mui/system";
@@ -21,6 +21,24 @@ export default function EstateList(){
         const endIndex = startIndex + itemsPerPage;
         return estates.slice(startIndex, endIndex);
       };
+
+
+      useEffect(() => {
+        const timer = setInterval(() => {
+          if (estates.length > 0) {
+            console.log("ending interval!")
+            clearInterval(timer);
+          } else {
+            console.log("starting interval!")
+            fetchData();
+          }
+        }, 10000); // 10 seconds
+    
+        return () => {
+          clearInterval(timer); // Clean up the timer on component unmount
+        };
+      }, [estates]); // Run effect whenever 'estates' state changes
+    
 
 
       console.log("estates",estates);
@@ -47,7 +65,7 @@ export default function EstateList(){
         </Box>   
         </>
          : <Box sx={{ width:"100%", marginTop:"2em",display:"flex", alignItems:"center", justifyContent:"center"}}>
-            <Button variant="contained" onClick={()=>{fetchData()}}>Fetch data</Button>
+           Every 10 seconds there is an interval trying to fetch data, wait for the API to initialize!
          </Box>
     );
 }
